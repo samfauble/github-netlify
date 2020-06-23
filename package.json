@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "should": "^13.2.3",
+    "uid": "^1.0.0",
     "zapier-platform-core": "10.0.0"
   },
   "devDependencies": {

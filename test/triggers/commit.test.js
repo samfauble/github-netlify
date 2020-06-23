@@ -10,7 +10,10 @@ zapier.tools.env.inject();
 
 describe('My App', () => {
   it('should run triggers.commit', async () => {
-    const bundle = { inputData: {} };
+    const bundle = { inputData: {
+      profile_name: 'samfauble',
+      repo_name: 'github-brawl'
+    } };
 
     const results = await appTester(App.triggers.commit.operation.perform, bundle);
     should.exist(results);
