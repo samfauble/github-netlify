@@ -1,8 +1,13 @@
 // create a particular deploy by name
 const perform = async (z, bundle) => {
+  const baseUrl = 'https://api.netlify.com/api/v1/sites/'
+  const siteId = bundle.inputData.site_name + "/deploys"
+  const url = baseUrl + siteId
+
+  console.log(bundle.inputData.site_name)
   const response = await z.request({
     method: 'POST',
-    url: 'https://jsonplaceholder.typicode.com/posts',
+    url,
     // if `body` is an object, it'll automatically get run through JSON.stringify
     // if you don't want to send JSON, pass a string in your chosen format here instead
     body: {
@@ -31,8 +36,13 @@ module.exports = {
     // Zapier will pass them in as `bundle.inputData` later. They're optional.
     // End-users will map data into these fields. In general, they should have any fields that the API can accept. Be sure to accurately mark which fields are required!
     inputFields: [
-      {key: 'name', required: true},
-      {key: 'fave_meal', label: 'Favorite Meal', required: false}
+      {
+        key: 'site_name', 
+        required: true,
+        label: 'Site Name',
+        helpText: 'Identify name of your Netlify site', 
+        type: 'string'
+      }
     ],
 
     // In cases where Zapier needs to show an example record to the user, but we are unable to get a live example
